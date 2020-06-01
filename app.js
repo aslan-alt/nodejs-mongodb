@@ -7,7 +7,6 @@ const ejs = require('ejs')
 //配置路由
 router.get('/login', (req, res) => {
     ejs.renderFile('./views/login.ejs',{}, (err, data) => {
-      
         res.send(data)
     })
 })
