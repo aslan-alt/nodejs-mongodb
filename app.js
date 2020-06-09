@@ -6,12 +6,12 @@ const router = require('./express-router/index')
 const ejs = require('ejs')
 //配置路由
 router.get('/login', (req, res) => {
-    ejs.renderFile('./views/login.ejs',{}, (err, data) => {
+    ejs.renderFile('./views/login.ejs', {}, (err, data) => {
         res.send(data)
     })
 })
 router.get('/', (req, res) => {
-    res.send('首页')
+    res.send('首页我没写：您可以输入/login访问哦')
 })
 router.post('/doLogin', (req, res) => {
     console.log(decodeURI(req.body))

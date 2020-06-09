@@ -18,20 +18,22 @@ function getFileMime(extname) {
 function staticInit(req, res, staticPath) {
 
     let pathName = url.parse(req.url).pathname//可以通过url模块parse方法拿到url 中的路径
+    if (pathName !== '/') {
+        const extname = path.extname(pathName)//通过path 模块extname拿到后缀类型
 
-    const extname = path.extname(pathName)//通过path 模块extname拿到后缀类型
-    
-    try {
-        const data = fs.readFileSync('./' + staticPath + pathName).toString()
-        
-        if (data) {
-            const contentType = getFileMime(extname)
-            res.writeHead(200, { 'Content-Type': `${contentType},charset="utf-8"` });
-            res.end(data);
+        try {
+            const data = fs.readFileSync('./' + staticPath + pathName).toString()
+
+            if (data) {
+                const contentType = getFileMime(extname)
+                res.writeHead(200, { 'Content-Type': `${contentType},charset="utf-8"` });
+                res.end(data);
+            }
+        } catch (error) {
+            console.log(error)
         }
-    } catch (error) {
-        console.log(error)
     }
+
 }
 
 let server = () => {
