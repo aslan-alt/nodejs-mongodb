@@ -67,11 +67,7 @@ let server = () => {
                 })
             }
         }
-        else {
-            // post 获取的post数据 把它绑定到req
-            res.writeHead(404, { 'Content-Type': 'text/html' });
-            res.end('页面不存在');
-        }
+       
     }
     app.get = function (str, callback) {
         console.log(`传进来的是${str}`)
